@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#eee8da">
+  <meta name="description" content="沿真实路网漫游水墨徐州，从云龙湖与老城到铜山新区、徐州东站和奥体中心。">
+  <title>水墨徐州 · 一城山水，一卷彭城</title>
+  <link rel="icon" href="./assets/favicon-01a004c6e141537a.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./src/styles-YEYUO2YO.css">
+  
+  
+  
+  <link rel="modulepreload" href="./src/chunk-JYJTV7VL.js">
+  <link rel="modulepreload" href="./src/main-CKWKLJPO.js">
+  <link rel="preload" as="font" type="font/woff2" href="./assets/ink-brush-AOAZUXBQ.woff2" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/opening/xuzhou-opening.json" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/terrain/xuzhou-terrain-delivery.json" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/terrain/xuzhou-terrain-samples-bb26ec32793df288.bin.gz" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/terrain/xuzhou-ground-9471c60923ae6e05.bin.gz" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/city/city-map-de1cda110123fee78928173a53325e17eab43b08f8298448e39375f0bb9365c3.bin.gz" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="./assets/city/xuzhou-city.json" crossorigin="anonymous">
+</head>
+<body class="is-loading">
+  <svg class="icon-definitions" aria-hidden="true"><defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-out" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 5-5 4H3v6h3l5 4ZM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-muted" viewBox="0 0 24 24"><path d="m11 5-5 4H3v6h3l5 4ZM16 9l6 6M22 9l-6 6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M6 9v11h12V9M10 20v-7h4v7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2m-3-7 1.4-1.4M4.6 19.4 6 18M6 6 4.6 4.6M18 18l1.4 1.4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 10 7-10 7Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-catalog" viewBox="0 0 24 24"><path d="M4 4h16v16H4ZM9 4v16M13 8h3M13 12h3M13 16h3"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="m16 3 5 5-12 12-6 1 1-6ZM13 6l5 5M3 21l5-5"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h5m4 0h7M4 17h10m4 0h2"/><circle cx="11" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></symbol>
+  </defs></svg>
+
+  <main id="experience" aria-label="水墨徐州三维画卷">
+    <div id="scene" aria-label="徐州三维山水场景，拖动旋转，方向键或 WASD 移动，E 上升，Q 下降，滚轮缩放" tabindex="0"></div>
+    <div class="opening-sketch" id="opening-sketch" aria-hidden="true"></div>
+    <div class="paper-grain" aria-hidden="true"></div>
+    <div class="edge-wash" aria-hidden="true"></div>
+    <div class="frame" aria-hidden="true"></div>
+    <div id="map-note-pins" aria-label="画中留言"></div>
+
+    <header class="masthead">
+      <a href="#" class="wordmark" id="brand-home" aria-label="水墨徐州，回到初始视角">
+        <span class="brand-seal">彭</span>
+        <span class="brand-name">水墨徐州<small>XUZHOU IN INK</small></span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="text-button" id="notes-open" aria-haspopup="dialog" aria-controls="notes-dialog">留墨 <small id="notes-count">0</small></button>
+        <span class="edition">山水手记 <i>·</i> 徐州篇</span>
+        <button class="text-button" id="about-button" aria-haspopup="dialog">关于画卷<svg aria-hidden="true"><use href="#i-arrow-out"/></svg></button>
+      </div>
+    </header>
+
+    <section class="intro is-pending" id="intro" aria-label="画卷介绍">
+      <span class="eyebrow">一城山水，一卷彭城</span>
+      <div class="title-composition"><h1>徐州</h1><span class="vertical-poem">湖山入墨<br>汉韵成诗</span><span class="small-seal">彭城<br>山水</span></div>
+      <p class="intro-copy">把脚步放慢，<br>走进一座城的山水之间。</p>
+      <button class="journey-button" id="journey-button"><span>循墨而行</span><svg><use href="#i-arrow"/></svg></button>
+    </section>
+
+    <section class="place-story" id="place-story" hidden aria-live="polite">
+      <div class="story-toolbar">
+        <button class="back-link" id="back-overview">← 返回画卷</button>
+        <button type="button" class="story-toggle" id="story-toggle" aria-controls="place-story-content" aria-expanded="true" aria-label="收起景点介绍"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span>收起</span></button>
+      </div>
+      <div id="place-story-content">
+        <div class="place-index"><span id="place-number">01</span><span id="place-count"> / 26 处风景</span></div>
+        <h2 id="place-name"></h2><p class="place-poem" id="place-poem"></p>
+        <p class="place-description" id="place-description"></p>
+        <button class="next-place" id="next-place">下一处风景 <svg><use href="#i-arrow"/></svg></button>
+        <button type="button" class="station-replay" id="station-replay" hidden><span>再看一次 · 高铁掠过</span><svg aria-hidden="true"><use href="#i-arrow-out"/></svg></button>
+      </div>
+    </section>
+
+    <aside class="view-tools" aria-label="视角控制">
+      <button id="light-button" class="tool-button light-button" aria-label="切换暮色" aria-pressed="false" title="切换日光 / 暮色"><svg><use href="#i-sun"/></svg><span>日光</span></button>
+      <span class="tool-divider"></span>
+      <button id="zoom-in" class="tool-button" aria-label="放大场景" title="放大"><svg><use href="#i-plus"/></svg></button>
+      <button id="zoom-out" class="tool-button" aria-label="缩小场景" title="缩小"><svg><use href="#i-minus"/></svg></button>
+      <button id="reset-view" class="tool-button" aria-label="回到初始视角" title="回到初始视角"><svg><use href="#i-home"/></svg></button>
+      <button type="button" id="config-open" class="tool-button config-toggle" aria-label="画卷设置" aria-haspopup="dialog" aria-controls="config-dialog" aria-expanded="false" title="画卷设置"><svg aria-hidden="true"><use href="#i-settings"/></svg><span>设置</span></button>
+    </aside>
+
+    <button type="button" id="compass-reset" class="compass" aria-label="恢复正北方向" title="点击归北，保留当前远近与俯仰"><span>北</span><svg viewBox="0 0 60 60" id="compass-needle" aria-hidden="true"><circle cx="30" cy="30" r="22"/><path class="north-arrow" d="M30 11 35 34 30 30 25 34Z"/><path d="m30 49-5-23 5 4 5-4Z"/></svg></button>
+
+    <div id="movement-pad" class="movement-pad" data-active="false">
+      <button type="button" class="movement-pad__surface" aria-label="移动方向盘，可拖动或用方向键移动" aria-describedby="movement-pad-help">
+        <svg class="movement-pad__direction movement-pad__direction--up" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <svg class="movement-pad__direction movement-pad__direction--right" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <svg class="movement-pad__direction movement-pad__direction--down" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <svg class="movement-pad__direction movement-pad__direction--left" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="movement-pad__knob" aria-hidden="true"></span>
+      </button>
+      <span class="movement-pad__caption" aria-hidden="true">按住移步</span>
+      <span id="movement-pad-help" class="movement-pad__help">按住或拖动圆盘，沿当前视角移动；离中心越远越快，松手停止。</span>
+    </div>
+
+    <nav class="place-dock" aria-label="景点导航">
+      <button type="button" id="catalog-toggle" class="catalog-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="places-dialog"><svg aria-hidden="true"><use href="#i-catalog"/></svg><span class="dock-copy"><span class="dock-label">游览目录</span><span id="catalog-summary">寻一处风景，入一卷山水</span></span><svg class="dock-expand" aria-hidden="true"><use href="#i-arrow-out"/></svg></button>
+      <span class="dock-divider" aria-hidden="true"></span>
+      <button type="button" id="catalog-overview" class="dock-overview" aria-label="回到初始视角" aria-pressed="true"><svg aria-hidden="true"><use href="#i-home"/></svg><span>归位</span></button>
+    </nav>
+
+    <footer class="bottom-bar">
+      <span class="interaction-hint"><span class="mouse-mark"></span><span class="desktop-hint">方向键 / WASD 移步 · E 升 / Q 降 · 滚轮缩放</span><span class="mobile-hint">摇杆移步 · 双指缩放</span></span>
+      <div class="playback-tools">
+        <button type="button" id="sound-button" aria-pressed="false" aria-label="开启配乐与雨声" title="开启配乐与雨声"><svg aria-hidden="true"><use href="#i-muted"/></svg><span>启声</span></button>
+        <button id="tour-button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-play"/></svg><span>随机游览</span></button>
+      </div>
+      <span class="art-note">地图为骨 <span>·</span> 水墨为意</span>
+    </footer>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <div class="loading-screen" id="loading-screen" role="status" aria-live="polite" aria-busy="true">
+    <p class="loading-state" id="loading-state" hidden>画卷暂未展开</p>
+    <small id="loading-message">正在备好笔墨</small>
+    <div class="loading-progress" role="progressbar" aria-label="画卷加载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="3"><span></span></div>
+    <button type="button" class="journey-button" id="reload-scene" hidden>重新加载<svg aria-hidden="true"><use href="#i-arrow-out"/></svg></button>
+  </div>
+  <a class="startup-credit" id="startup-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">地图数据 © OpenStreetMap contributors</a>
+  <dialog id="notes-dialog" class="notes-dialog" aria-labelledby="notes-title">
+    <button type="button" class="dialog-close" id="notes-close" aria-label="关闭留言"><svg><use href="#i-close"/></svg></button>
+    <span class="eyebrow">一处风景 · 一句心事</span><h2 id="notes-title">彭城留墨</h2>
+    <p class="notes-local" id="notes-description">登录打卡地，留下此刻的心情。自己的留墨可随时修改。</p>
+    <div class="note-account-bar" id="note-account-bar"><div class="note-account-identity"><img id="note-account-avatar" alt="我的头像" hidden><span id="note-account-name">尚未登录</span></div><div class="note-account-actions"><button type="button" id="note-account-open">邮箱登录 / 注册</button><button type="button" id="note-account-logout" hidden>退出此页登录</button></div></div>
+    <section id="note-account" hidden>
+      <button type="button" class="note-primary note-wechat-login" id="note-wechat-login" hidden>微信登录并继续</button>
+      <div class="notes-tabs" id="note-auth-tabs" role="group" aria-label="账户操作"><button type="button" data-note-auth="login" aria-pressed="true">邮箱登录</button><button type="button" data-note-auth="register" aria-pressed="false">注册世界中心账号</button></div>
+      <form id="note-login-form">
+        <label class="note-field">邮箱<input id="note-login-email" name="email" type="email" autocomplete="email" maxlength="100" placeholder="输入你的邮箱" required></label>
+        <label class="note-field">密码<input id="note-login-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72" placeholder="8–72 位密码" required></label>
+        <fieldset id="note-register-fields" hidden disabled>
+          <label class="note-field">确认密码<input id="note-password-confirm" type="password" autocomplete="new-password" minlength="8" maxlength="72" placeholder="再次输入密码"></label>
+          <div class="note-field"><label for="note-captcha-input">图形验证码</label><div class="note-captcha-row"><input id="note-captcha-input" name="captcha" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" placeholder="输入图中 4 位数字" aria-describedby="note-captcha-hint"><button type="button" id="note-captcha-refresh" aria-label="换一张数字验证码"><img id="note-captcha-image" alt="数字图形验证码" hidden><span id="note-captcha-text">点击获取</span></button></div><small id="note-captcha-hint">看不清可点击图片更换；发送成功后无需重复填写。</small></div>
+          <label class="note-field">邮箱验证码<div class="note-code-row"><input id="note-register-code" aria-label="邮箱验证码" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="邮件中的验证码"><button type="button" id="note-send-code">发送验证码</button></div></label>
+        </fieldset>
+        <p class="note-auth-status" id="note-auth-status" role="status" aria-live="polite"></p>
+        <div class="note-form-actions"><button type="button" id="note-auth-cancel">返回留墨</button><button type="submit" class="note-primary" id="note-auth-submit">登录</button></div>
+      </form>
+    </section>
+    <section id="notes-browse">
+      <div class="notes-tabs" role="group" aria-label="留墨范围">
+        <button type="button" data-note-scope="all" aria-pressed="true">大家的留墨</button>
+        <button type="button" data-note-scope="mine" aria-pressed="false">我的留墨</button>
+        <button type="button" data-note-scope="local" aria-pressed="false" id="notes-local-tab" hidden>本机旧稿</button>
+      </div>
+      <div class="notes-load-state"><span id="notes-status" role="status" aria-live="polite">正在拾取山水间的留墨…</span><button type="button" id="notes-retry" hidden>重新加载</button></div>
+      <p class="notes-empty" id="notes-empty">山水尚无落款。<br>轻点地图任意位置，留下你的第一句话。</p>
+      <div id="notes-list" class="notes-list" aria-label="地图留言"></div>
+      <button type="button" id="notes-more" class="notes-more" hidden>再读一些</button>
+      <button type="button" class="note-primary" id="note-at-center">在画面中心留一笔 <svg><use href="#i-pen"/></svg></button>
+    </section>
+    <form id="note-form" hidden>
+      <fieldset class="note-avatars" id="note-avatar-field"><legend>选择头像</legend><div class="note-avatar-picker"><div id="note-avatar-options"></div><label class="note-avatar-upload" id="note-avatar-upload">上传头像<input id="note-avatar-file" type="file" accept="image/jpeg,image/png,image/webp" aria-label="上传账号头像"></label></div></fieldset>
+      <label class="note-field" id="note-author-field">你的称呼<input id="note-author" name="author" maxlength="20" autocomplete="nickname" required placeholder="怎么称呼你" value="游人"></label>
+      <p class="notes-local" id="note-profile-hint">昵称与头像会随留墨一起保存到账号。</p>
+      <fieldset class="note-photos"><legend>留墨配图 <small>选填</small></legend>
+        <div class="note-photo-picker">
+          <div id="note-photo-previews" class="note-photo-previews"></div>
+          <div class="note-photo-add-row">
+            <label class="note-photo-add" id="note-photo-add"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><input id="note-photo-file" type="file" multiple accept="image/jpeg,image/png,image/webp" aria-label="添加留墨配图" aria-describedby="note-photo-hint note-photo-status"></label>
+            <div class="note-photo-copy"><span id="note-photo-count">最多上传五张图</span><small id="note-photo-hint">JPG / PNG / WebP · 每张最大 5 MB</small></div>
+          </div>
+        </div>
+        <p class="note-photo-status" id="note-photo-status" role="status"></p>
+        <button type="button" class="note-photo-cancel" id="note-photo-cancel" hidden>取消处理</button>
+      </fieldset>
+      <label class="note-field">留给此处的一句话<textarea id="note-message" name="message" rows="4" maxlength="240" required placeholder="把此刻的心情，留在这片山水里。"></textarea></label>
+      <div class="note-form-meta"><span>落点已选好 · 可关闭后重新点选</span><span id="note-length">0 / 240</span></div>
+      <div class="note-form-actions"><button type="button" id="note-cancel">暂不落笔</button><button type="submit" class="note-primary" id="note-save"><span>公开留墨</span><svg><use href="#i-pen"/></svg></button></div>
+    </form>
+    <section id="note-reading" hidden>
+      <header class="note-author-row"><img id="note-read-avatar" alt=""><div><strong id="note-read-author"></strong><time id="note-read-time"></time></div></header>
+      <p id="note-read-message" tabindex="-1"></p>
+      <div class="note-read-photos" id="note-read-photos" hidden></div>
+      <p class="notes-local" id="note-read-source"></p>
+      <div class="note-read-actions"><button type="button" id="note-edit">修改这笔</button><button type="button" id="note-delete">删除留言</button></div>
+    </section>
+    <p id="note-error" class="note-error" role="alert" hidden></p>
+  </dialog>
+  <dialog id="places-dialog" class="places-dialog" aria-labelledby="catalog-title">
+    <header class="catalog-header"><div><span class="eyebrow">循墨寻景 · 徐州</span><h2 id="catalog-title">彭城游览目录</h2></div><button type="button" id="catalog-close" class="catalog-close" aria-label="关闭景点目录"><svg aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <div class="catalog-search"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="place-search" type="search" aria-label="搜索景点" placeholder="搜索景点名称" autocomplete="off"><button type="button" id="clear-place-search" class="catalog-clear" aria-label="清空搜索" hidden><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div id="place-filters" class="place-filters" role="group" aria-label="景点分类"></div>
+    <div class="catalog-results-heading"><span id="catalog-results-count" role="status" aria-live="polite" aria-atomic="true"></span><span>择一处，入画中</span></div>
+    <nav id="place-results" class="place-results" aria-label="景点目录"></nav>
+    <p id="catalog-empty" class="catalog-empty" hidden><strong>这一笔，还未寻到</strong><span>换个名称，或试试「全部」分类。</span></p>
+    <footer class="catalog-footer"><span id="catalog-footer-count"></span></footer>
+  </dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <button class="dialog-close" id="close-about" aria-label="关闭画卷说明"><svg><use href="#i-close"/></svg></button>
+    <span class="eyebrow">ABOUT THE JOURNEY</span><h2 id="about-title">把徐州，写进山水里。</h2>
+    <p>这是一幅可以走进去的城市画卷。道路、湖岸与岛屿取自地图，向外延伸至九里湖、铜山新区、新城区和徐州东站一带。约 32 × 30 公里的矩形范围是展示边界，不是行政区界。</p>
+    <p id="city-data-count"></p>
+    <p>有地图轮廓的建筑沿原形挤出，其余街区填入简化示意房屋。全城山丘与起伏取自约 30 米级 Copernicus 高程数据，以水墨铺色；云龙山相对湖面的高差作 2 倍艺术处理，山脚平滑衔接，其余山丘保留原比例。源数据包含树木和建筑表面，湖岸、地标地基做了局部整理；画卷不用于实际导航。</p>
+    <div class="about-instructions"><div><b>观景</b><span>拖动旋转 · 点击指南针归北</span></div><div><b>移步</b><span>方向键 / WASD · 手机按住方向盘<br>也可右键拖动 / 双指平移</span></div><div><b>升降</b><span>电脑 E 上升 / Q 下降 · 松开停止</span></div><div><b>远近</b><span>滚轮 / 双指缩放</span></div><div><b>寻访</b><span>展开游览目录 · 分类或搜索景点</span></div></div>
+    <p class="reference-note">参考摄影来自 Wikimedia Commons：Sprt98、rheins、H2v5o68z、Huanokinhejo。建筑轮廓参照实拍影像，以水墨意境重新创作。</p>
+    <p class="reference-note">地图数据：<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors · ODbL</a>，用于湖岸、道路、峰位与园区位置。方位校核：<a href="https://www.ylhjq.cn/index.php?c=category&amp;id=25" target="_blank" rel="noopener noreferrer">云龙湖景区官方导览图</a>。苏公塔采用高德地图兴趣点坐标转换后定位。</p>
+    <p class="reference-note">高程：Copernicus DEM GLO-30（EGM2008，30 米级 DSM）。<a href="./assets/terrain/NOTICE.txt" target="_blank" rel="noopener">数据署名与使用说明</a> · <a href="./assets/terrain/license.pdf" target="_blank" rel="noopener">数据许可</a></p>
+    <p class="reference-note" lang="en">produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved</p>
+    <span class="about-signature">山水有相逢，彭城待君来。</span>
+  </dialog>
+  <dialog id="config-dialog" class="config-dialog" aria-labelledby="config-title" aria-describedby="config-intro">
+    <header class="config-header"><div><span class="eyebrow">墨色有度 · 山水随心</span><h2 id="config-title">画卷设置</h2></div><button type="button" id="config-close" class="config-close" aria-label="关闭画卷设置"><svg aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <p id="config-intro" class="config-intro">调整后保存，重新铺开画卷。<br>设置仅保存在当前浏览器。</p>
+    <form id="config-form" class="config-form" novalidate>
+      <div class="config-search"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="config-search" type="search" aria-label="查找画卷设置" placeholder="查找视距、水色、屋顶…" autocomplete="off"><button type="button" id="config-search-clear" aria-label="清空设置搜索" hidden><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <div id="config-scroll" class="config-scroll">
+        <div id="config-errors" class="config-errors" role="alert" tabindex="-1" hidden></div>
+        <p id="config-empty" class="config-empty" hidden>没有找到这项设置，试试更短的名称。</p>
+        <div id="config-groups" class="config-groups"></div>
+        <details id="config-offline" class="config-offline"><summary>地图数据 · 需重新构建</summary><p>水位、山体高度和道路筛选影响地图数据，需要修改源码配置并重新构建。这里保留当前数值，导出配置时会一并包含。</p><dl id="config-offline-values"></dl></details>
+      </div>
+      <footer class="config-footer"><p id="config-status" role="status" aria-live="polite">尚未修改</p><button type="submit" id="config-save" class="config-primary">应用并保存 <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><div class="config-secondary"><button type="button" id="config-import">导入配置</button><button type="button" id="config-export">导出配置</button><button type="button" id="config-reset">恢复默认</button></div></footer>
+    </form>
+    <input id="config-import-file" type="file" accept="application/json,.json" hidden>
+  </dialog>
+  <noscript>这幅交互画卷需要开启 JavaScript。</noscript>
+  <script type="module" src="./src/bootstrap-2IYVKTNG.js"></script>
+</body>
+</html>

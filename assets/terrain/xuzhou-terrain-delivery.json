@@ -1,0 +1,242 @@
+{
+  "version": 2,
+  "format": "terrain-lossless-gzip",
+  "ground": {
+    "metadata": {
+      "version": 4,
+      "format": "xyz-f32-indices-u32-le",
+      "dataFile": "xuzhou-ground.bin",
+      "vertexCount": 324195,
+      "indexCount": 1844568,
+      "grid": {
+        "spacing": 6,
+        "minX": -965.1637644277577,
+        "maxX": 2252.048783664725,
+        "minZ": -1634.567679432917,
+        "maxZ": 1367.699486872507
+      },
+      "displaySpacingMetres": 60,
+      "elevationSha256": "132d34b1a89c1791def8e50eedfc9b693ebe3f51149cac6ce488a4b99f8aeded",
+      "inputHash": "e84609e8e58fedfa960c6c4f7c29fb5fca76bf79d4c6ecf706dde3c33d9524fc",
+      "configSignature": "{\"waterDropMetres\":5,\"bankHeight\":0.12,\"shoreBlendDistance\":6,\"shoreRoundingMetres\":0,\"shoreRoundingSegments\":4,\"yunlongRelief\":{\"multiplier\":2,\"innerFeatherMetres\":80,\"outerFeatherMetres\":100}}",
+      "platforms": [
+        {
+          "id": "mountain",
+          "minX": 174.05373948174736,
+          "maxX": 178.06373948174735,
+          "minZ": -4.59154868683497,
+          "maxZ": -0.18567127785364568,
+          "height": 22.947341011239452,
+          "blend": 5
+        },
+        {
+          "id": "ximatai",
+          "minX": 260.4953948037324,
+          "maxX": 275.7353948037324,
+          "minZ": -157.38848747578433,
+          "maxZ": -142.54098739949038,
+          "height": 4.632074920800137,
+          "blend": 5
+        },
+        {
+          "id": "oldtown",
+          "minX": 262.2456787005323,
+          "maxX": 279.4256787005324,
+          "minZ": -201.5857507427563,
+          "maxZ": -186.60575074275627,
+          "height": 1.9840744317751384,
+          "blend": 5
+        },
+        {
+          "id": "pagoda",
+          "minX": 51.91232234314519,
+          "maxX": 56.40032056168157,
+          "minZ": 117.98102042705995,
+          "maxZ": 123.42634448559267,
+          "height": 2.85680182630754,
+          "blend": 5
+        },
+        {
+          "id": "museum",
+          "minX": 227.9355255496774,
+          "maxX": 243.37552535894255,
+          "minZ": -102.98184728903615,
+          "maxZ": -93.14184690756642,
+          "height": 2.8249792691793982,
+          "blend": 5
+        },
+        {
+          "id": "hanculture",
+          "minX": 550.5440579211338,
+          "maxX": 561.3840583026035,
+          "minZ": -62.396490429936215,
+          "maxZ": -56.75649033456879,
+          "height": 2.2164023738546117,
+          "blend": 5
+        },
+        {
+          "id": "guishan",
+          "minX": -218.55386890834492,
+          "maxX": -214.23386898463886,
+          "minZ": -729.3577989336711,
+          "maxZ": -725.8177989813548,
+          "height": 2.800741776799504,
+          "blend": 5
+        },
+        {
+          "id": "eaststation",
+          "minX": 1313.2638592299418,
+          "maxX": 1362.4913470229103,
+          "minZ": -306.75105064931597,
+          "maxZ": -274.41789764943803,
+          "height": 2.968860270973821,
+          "blend": 5
+        },
+        {
+          "id": "stadium",
+          "minX": 1213.3025653529426,
+          "maxX": 1234.7176485133427,
+          "minZ": 169.60487017857415,
+          "maxZ": 193.9296823428808,
+          "height": 2.6230014911385524,
+          "blend": 5
+        },
+        {
+          "id": "baolian",
+          "minX": 977.9271998766282,
+          "maxX": 982.1671998766282,
+          "minZ": -622.0594616646672,
+          "maxZ": -617.8177116722966,
+          "height": 7.6252328763678605,
+          "blend": 5
+        },
+        {
+          "id": "wenmiao",
+          "minX": 256.9257972757569,
+          "maxX": 262.1657972757569,
+          "minZ": -295.32785817923406,
+          "maxZ": -283.08785817923405,
+          "height": 2.8253821837718758,
+          "blend": 5
+        },
+        {
+          "id": "suning",
+          "minX": 250.46585274017963,
+          "maxX": 270.70585274017964,
+          "minZ": -271.43072862901687,
+          "maxZ": -252.59072824754713,
+          "height": 1.8078915157746467,
+          "blend": 5
+        },
+        {
+          "id": "concert",
+          "minX": -35.085705497682795,
+          "maxX": -27.445705402315365,
+          "minZ": -39.77080805004346,
+          "maxZ": -31.530808050043465,
+          "height": 3.7763044617110513,
+          "blend": 5
+        },
+        {
+          "id": "huaihai",
+          "minX": 304.9461852446801,
+          "maxX": 311.3879350463159,
+          "minZ": 79.96869360448319,
+          "maxZ": 86.40869341374834,
+          "height": 4.456935135353566,
+          "blend": 5
+        },
+        {
+          "id": "deji",
+          "minX": 232.8178348223062,
+          "maxX": 249.85783405936675,
+          "minZ": -226.88321946829564,
+          "maxZ": -214.5432190868259,
+          "height": 1.5569045321341723,
+          "blend": 5
+        },
+        {
+          "id": "tvtower",
+          "minX": 146.51982987551824,
+          "maxX": 149.85982978015082,
+          "minZ": -143.63011091179425,
+          "maxZ": -140.29011100716167,
+          "height": 2.8473421916142447,
+          "blend": 5
+        },
+        {
+          "id": "heping",
+          "minX": 417.1513270050123,
+          "maxX": 453.8620910080867,
+          "minZ": -108.23119359546685,
+          "maxZ": -102.48348344696227,
+          "height": 3.0714680084764137,
+          "blend": 5
+        },
+        {
+          "id": "station",
+          "minX": 417.4724480299646,
+          "maxX": 434.29481251714606,
+          "minZ": -276.5173510591227,
+          "maxZ": -250.48511189310298,
+          "height": 3.977092266944454,
+          "blend": 5
+        },
+        {
+          "id": "waterworld",
+          "minX": -10.07971338560049,
+          "maxX": -1.1342218823612376,
+          "minZ": 19.114392547248936,
+          "maxZ": 26.697309873265315,
+          "height": 2.489593751859551,
+          "blend": 5
+        },
+        {
+          "id": "letu",
+          "minX": 249.23322466762227,
+          "maxX": 250.13543420930654,
+          "minZ": -169.5781456299237,
+          "maxZ": -168.3995894413612,
+          "height": 2.3778863049110055,
+          "blend": 5
+        }
+      ],
+      "shoreBanks": {
+        "vertexStart": 292806,
+        "vertexCount": 31389,
+        "indexStart": 1656270,
+        "wallIndexStart": 1656270,
+        "triangleCount": 62766,
+        "roundedTriangleCount": 0,
+        "verticalTriangleCount": 62766,
+        "segmentCount": 31383,
+        "length": 78902.99490917071,
+        "radius": 0,
+        "segments": 0,
+        "profileStride": 1,
+        "roundedProfiles": 0,
+        "constrainedProfiles": 0,
+        "protectedProfiles": 3,
+        "maxInset": 0
+      },
+      "relief": {
+        "yunlong": {
+          "featureId": "way/93891630",
+          "multiplier": 2,
+          "innerFeatherMetres": 80,
+          "outerFeatherMetres": 100,
+          "referenceElevationMetres": 31
+        }
+      },
+      "sha256": "33fe4f3447413aed76beede9974165a401de700333f8a140a2c913eb26a72dde",
+      "byteLength": 11268612,
+      "processing": "Regular ground grid from original DSM, with 2x Yunlong Mountain relief above the Yunlong Lake datum, feathered into unchanged surrounding terrain; a straight dry rim retains the original water-contact contour, with closed vertical faces below; water lowered 5 metres and landmark platforms retained."
+    },
+    "encoding": "xyz-f32-bitxor-u32-delta-zigzag-byte-shuffle-gzip",
+    "dataFile": "xuzhou-ground-9471c60923ae6e05.bin.gz",
+    "sha256": "9471c60923ae6e05666d4f5ea8ca6fe877b717bacc7b412c5920a0af88a886f9",
+    "compressedByteLength": 1987120,
+    "byteLength": 11268612,
+    "decodedSha256": "33fe4f3447413aed76beede9974165a401de700333f8a140a2c913eb26a72dde"
+  }
+}
